@@ -1,0 +1,10 @@
+<?php
+$config=
+    [
+        "mysql"=>[
+        "db"=>"googlenews",
+        "user"=>"root",
+        "password"=>"",
+        "host"=>"localhost"
+        ]
+    ];
