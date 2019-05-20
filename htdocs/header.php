@@ -10,7 +10,7 @@
         <div class="hitem right">
 
            <?php  if($_SESSION['Auth']==0){ echo " <a href=\"#!\" id=\"opensing\">sing in</a>";}else{echo "<a href=\"#!\" id=\"outuser\">exit</a><a href=\"#!\" id=\"opensing\"></a>";}?></a>
-
+            <?php if($_SESSION['Auth']==1) {echo " <a href='admin.php'>adminpanel</a>";}?>
             <i class="material-icons">person</i>
         </div>
 

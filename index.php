@@ -4,7 +4,7 @@ if (isset($_SESSION['Auth'])) {
 } else {
     $session = 0;
 }
-echo $_SESSION['Auth'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,8 +16,10 @@ echo $_SESSION['Auth'];
 <body>
 <div class="wrapper">
     <?php include("htdocs/header.php"); ?>
+
     <div class="content">
         <div class="main-news">
+
             <div class="itemnews">
                 <div><h4><a href="item-news.html">Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея
                             Садового</a></h4>
@@ -29,71 +31,36 @@ echo $_SESSION['Auth'];
                 <img src="https://picsum.photos/700/900/?random" alt="/">
             </div>
             <div class="itemnews">
-                <div><h4>Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея Садового</h4>
+                <div><h4><a href="item-news.html">Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея
+                            Садового</a></h4>
                     <ul>
                         <li>Розенко: Средняя зарплата в Украине может составить 12 тыс. гривен</li>
                     </ul>
                 </div>
 
                 <img src="https://picsum.photos/700/900/?random" alt="/">
-
-
             </div>
             <div class="itemnews">
-                <div><h4>Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея Садового</h4>
+                <div><h4><a href="item-news.html">Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея
+                            Садового</a></h4>
                     <ul>
                         <li>Розенко: Средняя зарплата в Украине может составить 12 тыс. гривен</li>
                     </ul>
                 </div>
 
                 <img src="https://picsum.photos/700/900/?random" alt="/">
-
-
             </div>
             <div class="itemnews">
-                <div><h4>Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея Садового</h4>
+                <div><h4><a href="item-news.html">Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея
+                            Садового</a></h4>
                     <ul>
                         <li>Розенко: Средняя зарплата в Украине может составить 12 тыс. гривен</li>
                     </ul>
                 </div>
 
                 <img src="https://picsum.photos/700/900/?random" alt="/">
-
-
             </div>
-            <div class="itemnews">
-                <div><h4>Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея Садового</h4>
-                    <ul>
-                        <li>Розенко: Средняя зарплата в Украине может составить 12 тыс. гривен</li>
-                    </ul>
-                </div>
 
-                <img src="https://picsum.photos/700/900/?random" alt="/">
-
-
-            </div>
-            <div class="itemnews">
-                <div><h4>Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея Садового</h4>
-                    <ul>
-                        <li>Розенко: Средняя зарплата в Украине может составить 12 тыс. гривен</li>
-                    </ul>
-                </div>
-
-                <img src="https://picsum.photos/700/900/?random" alt="/">
-
-
-            </div>
-            <div class="itemnews">
-                <div><h4>Выбор для юго-востока. Пойдут ли Вилкул и Мураев по пути Андрея Садового</h4>
-                    <ul>
-                        <li>Розенко: Средняя зарплата в Украине может составить 12 тыс. гривен</li>
-                    </ul>
-                </div>
-
-                <img src="https://picsum.photos/700/900/?random" alt="/">
-
-
-            </div>
         </div>
         <div class="in-news frame">
             <h4>В новостях</h4>
@@ -107,7 +74,7 @@ echo $_SESSION['Auth'];
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="js/header.js">
 
 </script>
@@ -164,13 +131,12 @@ echo $_SESSION['Auth'];
                     data: {email: email, password: password, a: 'auth'},
                     success: function (data) {
                         $('.info').html(data);
-                        if (data == 1) {
+                        location.reload();
 
-                            location.reload();
-                        }
-
-                    }});
-        }});
+                    }
+                });
+            }
+        });
         $("#outuser").on('click', function () {
             $.ajax({
                 url: "../htdocs/jq_index.php",
@@ -185,6 +151,34 @@ echo $_SESSION['Auth'];
                 }
 
             });
+        })
+        $.ajax({
+            url: "../htdocs/jq_index.php",
+            type: "POST",
+            data: {a: 'loadNews'},
+            datatype: "json",
+            success: function (data) {
+
+                let a = "";
+
+
+                $.each(JSON.parse(data), function (i, item) {
+                    a += " <div class=\"itemnews\"><div><h4>" + item.header + "</h4>" +
+                        "<ul>" +
+                        "<li>" +
+                                item.text +
+                        "</li>" +
+                        "</ul>"+
+
+                        "</div>" +
+                        '<img src="https://picsum.photos/700/900/?random" alt="/">'+
+                        "</div>"
+
+                });
+                $('.main-news').html(a);
+
+            }
+
         })
     })
 </script>

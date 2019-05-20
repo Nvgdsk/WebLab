@@ -1,5 +1,6 @@
 <?php
 include_once("authorization.php");
+include_once("Content.php");
 if(isset($_POST['a'])){
     $action = $_POST['a'];
 }
@@ -16,5 +17,11 @@ switch($action)
         break;
     case 'out':
         exitUser($_POST);
+        break;
+    case 'loadNews':
+        getNews($_POST);
+        break;
+    case 'uploadNews':
+        uploadNews($_POST);
         break;
 }

@@ -44,14 +44,14 @@ Class User{
             session_start();
             $_SESSION['Auth']=0;
 
-            echo "0";
+            echo "Логин или пароль не верный";
         }
         else
         {
             session_start();
             $_SESSION['Auth']=1;
 
-            echo "1";
+            echo "ок";
         }
         $mysqli->close();
     }
